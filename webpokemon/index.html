@@ -1,0 +1,47 @@
+<DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<body>
+
+<script type="text/javascript" src=     "js/image_loader.js"></script>
+<script type="text/javascript" src="js/mapping_variables.js"></script>
+<script type="text/javascript" src=           "js/events.js"></script>
+<script type="text/javascript" src=           "js/update.js"></script>
+<script type="text/javascript" src=           "js/render.js"></script>
+
+<button id="start_button" onclick="load_game_script();">Start</button>
+
+<video id="bulbasaur_front" width="36" height="38" autoplay loop class="video_hidden">
+    <source src="videos/bulbasaur_front.mp4" type="video/mp4">
+</video>
+
+<script>
+    function load_game_script() {
+        temp = document.getElementById("game_script");
+        if (temp) {
+            ending_game();
+            temp.parentNode.removeChild(temp);
+        }
+
+        temp = document.getElementById("game_canvas");
+        if (temp) {
+            temp.parentNode.removeChild(temp);
+        }
+
+        game_script = document.createElement("script");
+        game_script.id   = "game_script";
+        game_script.type = "text/javascript";
+        game_script.src  = "js/game.js";
+        document.body.appendChild(game_script);
+
+        canvas_script = document.createElement("script");
+        canvas_script.id   = "canvas_script";
+        canvas_script.type = "text/javascript";
+        canvas_script.src  = "js/prepare_canvas.js";
+        document.body.appendChild(canvas_script);
+        document.getElementById("start_button").blur();
+    };
+</script>
+
+</body>
+</html>
